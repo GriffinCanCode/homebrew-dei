@@ -1,0 +1,11 @@
+# Homebrew
+*.bottle.*
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
