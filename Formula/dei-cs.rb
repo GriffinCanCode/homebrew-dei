@@ -16,24 +16,6 @@ class DeiCs < Formula
     end
 
     libexec.install Dir["publish/*"]
-    
-    # Install appsettings.json
-    (libexec/"appsettings.json").write <<~EOS
-      {
-        "DetectionThresholds": {
-          "MaxLines": 300,
-          "MaxMethods": 20,
-          "MaxComplexity": 50,
-          "MinClusterSize": 3,
-          "ClusterThreshold": 0.7,
-          "MaxMethodLines": 50,
-          "MaxMethodComplexity": 10,
-          "MaxMethodParameters": 5,
-          "MaxClassesPerFile": 3,
-          "MaxFileLinesOfCode": 500
-        }
-      }
-    EOS
 
     # Create wrapper script
     (bin/"dei-cs").write <<~EOS
