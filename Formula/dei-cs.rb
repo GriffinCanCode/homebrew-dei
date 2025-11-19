@@ -2,7 +2,7 @@ class DeiCs < Formula
   desc "God Class Detector - AST-based C# code analyzer for detecting god classes, god files, and god methods"
   homepage "https://github.com/GriffinCanCode/Dei"
   url "https://github.com/GriffinCanCode/Dei/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "" # Will be filled when you create the release
+  sha256 "d52b2276af5e9dc51b54f1be9a4c4466fe39109a1b7e304824b069baf399b628"
   license "MIT"
   depends_on "dotnet"
 
