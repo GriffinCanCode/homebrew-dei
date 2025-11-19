@@ -1,36 +1,42 @@
 class DeiRs < Formula
-  desc "God Class Detector (Rust) - High-performance AST-based code analyzer for detecting god classes"
+  desc "Blazingly fast code analyzer for detecting god classes (Rust edition)"
   homepage "https://github.com/GriffinCanCode/Dei"
-  url "https://github.com/GriffinCanCode/dei-rs/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "" # Will be filled when you create the release
   license "MIT"
+  head "https://github.com/GriffinCanCode/Dei.git", branch: "main"
 
+  # For now, head-only until first release
   depends_on "rust" => :build
 
   def install
-    system "cargo", "install", *std_cargo_args
+    cd "dei-rs" do
+      system "cargo", "install", *std_cargo_args(path: "crates/dei-cli")
+    end
   end
 
   test do
-    # Create a simple test file
-    test_file = testpath/"test.rs"
-    test_file.write <<~EOS
-      pub struct TestStruct {
-          field1: String,
-          field2: i32,
+    # Create a test Rust file
+    (testpath/"test.rs").write <<~RUST
+      pub struct HugeClass {
+          field1: i32,
+          field2: String,
+          field3: Vec<u8>,
       }
-      
-      impl TestStruct {
-          pub fn new() -> Self {
-              TestStruct {
-                  field1: String::from("test"),
-                  field2: 0,
-              }
-          }
-      }
-    EOS
 
-    system bin/"dei-rs", "check", testpath.to_s
+      impl HugeClass {
+          pub fn method1(&self) -> i32 { self.field1 }
+          pub fn method2(&self) -> &str { &self.field2 }
+          pub fn method3(&self) -> &[u8] { &self.field3 }
+          pub fn method4(&self) {}
+          pub fn method5(&self) {}
+          pub fn method6(&self) {}
+          pub fn method7(&self) {}
+          pub fn method8(&self) {}
+          pub fn method9(&self) {}
+          pub fn method10(&self) {}
+      }
+    RUST
+
+    # Run analysis
+    system bin/"dei", "check", testpath, "--format", "json"
   end
 end
-
