@@ -4,13 +4,11 @@ class DeiRs < Formula
   license "MIT"
   head "https://github.com/GriffinCanCode/Dei.git", branch: "main"
 
-  # For now, head-only until first release
   depends_on "rust" => :build
 
   def install
-    cd "dei-rs" do
-      system "cargo", "install", *std_cargo_args(path: "crates/dei-cli")
-    end
+    # Build from dei-rs subdirectory
+    system "cargo", "install", *std_cargo_args(path: "dei-rs/crates/dei-cli")
   end
 
   test do

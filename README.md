@@ -28,9 +28,9 @@ brew install GriffinCanCode/dei/dei-alg
 ## Usage
 
 ```bash
-dei-cs check /path/to/project
-dei-rs check /path/to/project
-dei-alg check /path/to/project
+dei-cs check /path/to/project  # C# version
+dei check /path/to/project     # Rust version (from dei-rs formula)
+dei-alg check /path/to/project # ALGOL version
 ```
 
 ## License
